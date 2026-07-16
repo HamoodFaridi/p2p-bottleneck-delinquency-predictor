@@ -3,3 +3,4 @@ __pycache__/
 .ipynb_checkpoints/
 *.pyc
 .vscode/settings.json
+PROJECT_PLAN.md
