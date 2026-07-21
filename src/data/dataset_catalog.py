@@ -11,7 +11,9 @@ Eventually, it will also support:
 """
 
 from dataclasses import dataclass
-from typing import List
+from typing import List, Optional
+
+from src.constants import DatasetStatus
 
 
 @dataclass
@@ -24,11 +26,26 @@ class DatasetInfo:
     source: str 
     domain: str 
     description: str 
-    estimated_rows: int | None 
-    target_column: str | None 
+    estimated_rows: Optional[int]
+    target_column: Optional[str] 
     license: str 
-    status: str 
+    priority: int
+    status: DatasetStatus
     notes: str 
+
+    def is_selected(self) -> bool:
+        """Return True if this dataset has been selected."""
+        return self.status == DatasetStatus.SELECTED
+    
+    def summary(self) -> str:
+        """Return a readable summary of the dataset."""
+        return (
+            f"{self.name} | "
+            f"Domain: {self.domain} | "
+            f"Rows: {self.estimated_rows or 'Unknown'} | "
+            f"Status: {self.status.value}"
+
+        )
 
 # Candidate datasets 
 DATASETS: List[DatasetInfo] = []
