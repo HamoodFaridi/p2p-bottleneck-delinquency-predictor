@@ -276,3 +276,42 @@ PHASE 8 — DEPLOYMENT
 
 
 
+
+
+Target Variable: is_delayed
+
+Definition:
+An invoice is considered delayed when the payment clearing date
+occurs after the contractual due date.
+
+days_late = clear_date - due_in_date
+
+is_delayed = 1 when days_late > 0
+is_delayed = 0 when days_late <= 0
+
+Training Population:
+Closed invoices with a non-null clear_date.
+
+Prediction Population:
+Open invoices with a null clear_date.
+
+Prediction Point:
+Invoice creation/posting, using only information available at or
+before the prediction point.
+
+Excluded from Features:
+clear_date, days_late, is_delayed, isOpen, and any other fields
+that contain information generated after the prediction point.
+
+
+
+=======DATED 09/22/2026=============
+
+1. prediction point = posting_date
+2. closed/open population split
+3. classification target = is_delayed
+4. regression target = days_to_payment
+5. clear_date used to derive targets but excluded from model features
+6. open invoices reserved for future prediction
+7. target-building logic moved from notebook into src/features/target_builder.py
+8. automated tests added

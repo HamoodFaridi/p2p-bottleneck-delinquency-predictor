@@ -347,27 +347,27 @@ def investigate_secondary_document_dates(
     return mismatches
 
 
-def remove_redundant_columns(
-        df: pd.DataFrame,
-        columns_to_remove: List[str],
-) -> pd.DataFrame:
-    """
-    Remove columns that are redundant or not required 
-    for downstream modeling
-    """
+# def remove_redundant_columns(
+#         df: pd.DataFrame,
+#         columns_to_remove: List[str],
+# ) -> pd.DataFrame:
+#     """
+#     Remove columns that are redundant or not required 
+#     for downstream modeling
+#     """
 
-    cleaned_df = df.copy()
+#     cleaned_df = df.copy()
 
-    # columns_to_remove = [
-    #     "document_create_date_secondary"
-    # ]
+#     # columns_to_remove = [
+#     #     "document_create_date_secondary"
+#     # ]
 
-    cleaned_df = cleaned_df.drop(
-        columns=columns_to_remove,
-        errors="ignore",
-    )
+#     cleaned_df = cleaned_df.drop(
+#         columns=columns_to_remove,
+#         errors="ignore",
+#     )
 
-    return cleaned_df
+#     return cleaned_df
 
 
 def investigate_invoice_identifiers(

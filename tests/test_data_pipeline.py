@@ -9,7 +9,6 @@ from src.data.cleaner import (
     validate_date_quality,
     compare_document_and_posting_dates,
     investigate_secondary_document_dates,
-    remove_redundant_columns,
     investigate_invoice_identifiers,
     remove_duplicate_records,
 )
